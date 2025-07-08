@@ -22,4 +22,10 @@ export function validateEnv() {
     if (!env.RABBITMQ_URL) {
         throw new Error("RABBITMQ_URL is not found in the env");
     }
+    if (!env.AUTH_URL) {
+        throw new Error("AUTH_URL is not found in the env");
+    }
+    if (!env.COURSE_URL) {
+        throw new Error("COURSE_URL is not found in the env");
+    }
 }

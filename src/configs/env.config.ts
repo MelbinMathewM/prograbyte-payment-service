@@ -23,5 +23,11 @@ export const env = {
     },
     get RABBITMQ_URL() {
         return process.env.RABBITMQ_URL
+    },
+    get AUTH_URL() {
+        return process.env.AUTH_URL
+    },
+    get COURSE_URL() {
+        return process.env.COURSE_URL
     }
 }
