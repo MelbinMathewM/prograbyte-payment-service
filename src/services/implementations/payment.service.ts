@@ -89,6 +89,8 @@ export class PaymentService implements IPaymentService {
     async handleStripeWebhook(rawBody: Buffer, signature: string | string[]): Promise<void> {
         const event = stripe.webhooks.constructEvent(rawBody, signature, env.STRIPE_WEBHOOK_SECRET!);
 
+        console.log('webhook here')
+
         if (event.type === "checkout.session.completed") {
             const session = event.data.object as Stripe.Checkout.Session;
             const email = session.customer_email;
