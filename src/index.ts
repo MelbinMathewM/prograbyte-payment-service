@@ -20,6 +20,16 @@ const app: Application = express();
 
 app.use(conditionalBodyParser);
 app.use(verifyApiKey as express.RequestHandler);
+app.set("trust proxy", true);
+
+app.use((req, res, next) => {
+    if (req.secure || req.headers["x-forwarded-proto"] === "https") {
+        next();
+    } else {
+        return res.redirect("https://" + req.headers.host + req.url);
+    }
+});
+
 
 app.use("/payments", paymentRouter);
 app.use("/wallet", walletRouter);
